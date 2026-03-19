@@ -1,4 +1,5 @@
 package Controlador;
+import Modelo.Articulo;
 import Modelo.Departamento;
 import java.util.InputMismatchException;
 
@@ -27,6 +28,8 @@ public class Controlador {
         this.contadorDepartamentosId = 0;
         this.contadorArticulosGlobal = 0;
     }
+    
+    // ================ Metodos de Departamentos ================
     
     // Metodo para Agregar departamento
     public void agregarDepartamento(String nombre) {
@@ -95,12 +98,159 @@ public class Controlador {
     }
     
     // Metodo para retornar departamento por ID
-    public Departamento obtenerDepartamentoById(int id) {
+    public Departamento buscarDepartamento(int id) {
         for (int i = 0; i < contadorDepartamentos; i++) {
             if (departamentos[i].getId() == id) {
                 return departamentos[i];
             }
         }
         return null; // Nulo si no se encuentra ningun departamento
+    }
+    
+    // ================ Metodos de Artitulos ================
+    
+    // Metodo para agregar un articulo al departamento
+    public void agregarArticulo(
+        int idDepartamento, 
+        String nombre, 
+        String categoria
+    ) {
+        // Validar nombre
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new InputMismatchException(
+                "Error, nombre no debe estar vacio"
+            );
+        }
+        
+        // Validar departamento
+        Departamento departamento = buscarDepartamento(idDepartamento);
+        if (departamento == null) {
+            throw new IllegalStateException(
+                "Error, departamento no encontrado"
+            );
+        }
+        
+        // Validar espacio en la cola
+        if (departamento.getContadorArticulos() >= 20) {
+            throw new IllegalStateException(
+                "Error, no hay espacio en la cola del departamento"
+            );
+        }
+        
+        // Actualizar ID global de articulo
+        contadorArticulosGlobal++;
+        
+        // Crear objeto de tipo articulo
+        Articulo nuevo = new Articulo(
+            contadorArticulosGlobal, 
+            nombre, 
+            categoria
+        );
+        
+        // Agregar a la cola 
+        
+        int contador = departamento.getContadorArticulos();
+        departamento.getArticulos()[contador] = nuevo;
+        departamento.setContadorArticulos(contador + 1);
+    }
+    
+    // Metodo para eliminar un articulo del departamento
+    public void eliminarArticulo(int idDepartamento) {
+        // Validar departamento
+        Departamento departamento = buscarDepartamento(idDepartamento);
+        if (departamento == null) {
+            throw new IllegalStateException(
+                "Error, departamento no encontrado"
+            );
+        }
+        
+        // Validar que la cola no este vacia
+        int contador = departamento.getContadorArticulos();
+        
+        if (contador == 0) {
+            throw new IllegalStateException(
+                "Error: cola vacia, no se puede eliminar"
+            );
+        }
+        
+        // Eliminar primer articulo y desplazar posiciones (dequeue)
+        Articulo[] articulos = departamento.getArticulos();
+        
+        // Ref: https://www.geeksforgeeks.org/dsa/array-implementation-of-queue-simple/
+        for (int i = 1; i < contador; i++) {
+            articulos[i-1] = articulos[i];
+        }
+        
+        // Actualizar contador
+        departamento.setContadorArticulos(contador - 1);
+    }
+    
+    // Metodo para el traslado de articulos entre dos departamentos
+    public void trasladarArticulos(
+        int departamentoOrigen, 
+        int departamentoDestino
+    ) {
+        // Validar que hayan 2 departamentos o mas
+        if (contadorDepartamentos < 2) {
+            throw new IllegalStateException(
+                "Error, deben haber almenos un departamento mas para el traslado"
+            );
+        }
+        
+        Departamento origen = buscarDepartamento(departamentoOrigen);
+        Departamento destino = buscarDepartamento(departamentoDestino);
+        
+        // Validar que los departamentos existan
+        if (origen == null) {
+            throw new IllegalStateException(
+                "Error, departamento de origen no encontrado"
+            );
+        }
+        
+        if (destino == null) {
+            throw new IllegalStateException(
+                "Error, departamento de destino no encontrado"
+            );
+        }
+        
+        // Validar que el origen sea diferente al destino
+        if (origen == destino) {
+            throw new IllegalStateException(
+                "Error, traslado invalido. Debe seleccionar un destino diferente"
+            );
+        }
+        
+        // Validar que exista el menos un articulo en el departamento de origen
+        if (origen.getContadorArticulos() == 0) {
+             throw new IllegalStateException(
+                "Error, no hay articulos para trasladar"
+            );
+        }
+        
+        // Validar que haya suficiente espacio
+        int espacioDisponible = 20 - destino.getContadorArticulos();
+        int articulosATrasladar = origen.getContadorArticulos();
+
+        if (articulosATrasladar > espacioDisponible) {
+            throw new IllegalStateException(
+                "Error, no hay suficiente espacio en el departamento destino"
+            );
+        }
+        
+        // Mover articulos de la cola de origen a la cola de destino
+        while (origen.getContadorArticulos() > 0) {         
+            // Obtener primer articulo del departamento
+            Articulo articulo = origen.getArticulos()[0];
+           
+            // Eliminar del origen
+            eliminarArticulo(origen.getId());
+            
+            // Agregar en la cola de destino
+            agregarArticulo(
+                destino.getId(), 
+                articulo.getNombre(),
+                articulo.getCategoria()
+            );
+        }
     }
 }
