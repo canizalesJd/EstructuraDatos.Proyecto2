@@ -1,16 +1,19 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Universidad Estatal a Distancia (UNED)
+ * Cuatrimestre: I Cuatrimestre 2026
+ * Proyecto: Proyecto 2 - Estructura de Datos
+ * Descripción: Ventana principal del sistema, incluye menu de navegacion
+ * Estudiante: Jose David Canizales Azocar
+ * Fecha: Marzo 2026
  */
-package Vista;
 
-/**
- *
- * @author David
- */
+package Vista;
+import Controlador.Controlador;
+
 public class Principal extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Principal.class.getName());
+    private final Controlador controlador = new Controlador();
 
     /**
      * Creates new form Principal
@@ -28,21 +31,72 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        escritorio = new javax.swing.JDesktopPane();
+        menuBar = new javax.swing.JMenuBar();
+        menu = new javax.swing.JMenu();
+        registrarDepartamentosMenuItem = new javax.swing.JMenuItem();
+        listarDepartamentosMenuItem = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
+        escritorio.setLayout(escritorioLayout);
+        escritorioLayout.setHorizontalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 876, Short.MAX_VALUE)
+        );
+        escritorioLayout.setVerticalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 480, Short.MAX_VALUE)
+        );
+
+        menu.setText("Menu");
+
+        registrarDepartamentosMenuItem.setText("Registrar Departamentos");
+        registrarDepartamentosMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarDepartamentosMenuItemActionPerformed(evt);
+            }
+        });
+        menu.add(registrarDepartamentosMenuItem);
+
+        listarDepartamentosMenuItem.setText("Listar Departamentos");
+        listarDepartamentosMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listarDepartamentosMenuItemActionPerformed(evt);
+            }
+        });
+        menu.add(listarDepartamentosMenuItem);
+
+        menuBar.add(menu);
+
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(escritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(escritorio)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void registrarDepartamentosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarDepartamentosMenuItemActionPerformed
+        RegistroDepartamento registroDepartamento = new RegistroDepartamento(controlador);
+        escritorio.add(registroDepartamento);
+        registroDepartamento.show();  
+    }//GEN-LAST:event_registrarDepartamentosMenuItemActionPerformed
+
+    private void listarDepartamentosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarDepartamentosMenuItemActionPerformed
+        ListarDepartamentos listarDepartamentos = new ListarDepartamentos(controlador);
+        escritorio.add(listarDepartamentos);
+        listarDepartamentos.show();  
+    }//GEN-LAST:event_listarDepartamentosMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +124,10 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JMenuItem listarDepartamentosMenuItem;
+    private javax.swing.JMenu menu;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem registrarDepartamentosMenuItem;
     // End of variables declaration//GEN-END:variables
 }

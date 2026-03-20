@@ -2,6 +2,7 @@ package Controlador;
 import Modelo.Articulo;
 import Modelo.Departamento;
 import java.util.InputMismatchException;
+import java.util.Iterator;
 
 
 /*
@@ -13,7 +14,7 @@ import java.util.InputMismatchException;
  * Fecha: Maro 2026
  */
 public class Controlador {
-    // Pila de Departamentos (LIFO)
+    // Pila de Departamentos
     private Departamento[] departamentos;
     private int contadorDepartamentos;
     
@@ -106,7 +107,7 @@ public class Controlador {
         }
         return null; // Nulo si no se encuentra ningun departamento
     }
-    
+  
     // ================ Metodos de Artitulos ================
     
     // Metodo para agregar un articulo al departamento
