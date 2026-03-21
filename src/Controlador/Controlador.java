@@ -2,7 +2,6 @@ package Controlador;
 import Modelo.Articulo;
 import Modelo.Departamento;
 import java.util.InputMismatchException;
-import java.util.Iterator;
 
 
 /*
@@ -253,5 +252,14 @@ public class Controlador {
                 articulo.getCategoria()
             );
         }
+    }
+    
+    // Getters y Setters
+    public int getContadorDepartamentos() {
+        return contadorDepartamentos;
+    }
+
+    public void setContadorDepartamentos(int contadorDepartamentos) {
+        this.contadorDepartamentos = contadorDepartamentos;
     }
 }

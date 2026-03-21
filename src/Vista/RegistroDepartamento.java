@@ -16,6 +16,7 @@ import Modelo.Departamento;
  * Fecha: Marzo 2026
  */
 import Controlador.Controlador;
+import javax.swing.table.DefaultTableModel;
 public class RegistroDepartamento extends javax.swing.JInternalFrame {
 
     /**
@@ -27,6 +28,10 @@ public class RegistroDepartamento extends javax.swing.JInternalFrame {
     public RegistroDepartamento(Controlador controlador) {
         initComponents();
         this.controlador = controlador;
+        cargarDepartamentosEnTabla();
+        this.id.setText(
+            String.valueOf(controlador.getContadorDepartamentos() + 1)
+        );
     }
 
     /**
@@ -40,9 +45,13 @@ public class RegistroDepartamento extends javax.swing.JInternalFrame {
 
         tituloVentana = new javax.swing.JLabel();
         nombre = new javax.swing.JTextField();
+        lblId = new javax.swing.JLabel();
+        id = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
         botonCancelar = new javax.swing.JButton();
         botonRegistrar = new javax.swing.JButton();
+        contenedorTabla = new javax.swing.JScrollPane();
+        tablaContenido = new javax.swing.JTable();
 
         setClosable(true);
         setTitle("Registro de Departamento");
@@ -54,6 +63,16 @@ public class RegistroDepartamento extends javax.swing.JInternalFrame {
         nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nombreActionPerformed(evt);
+            }
+        });
+
+        lblId.setText("ID");
+
+        id.setEditable(false);
+        id.setFocusable(false);
+        id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idActionPerformed(evt);
             }
         });
 
@@ -73,35 +92,76 @@ public class RegistroDepartamento extends javax.swing.JInternalFrame {
             }
         });
 
+        tablaContenido.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nombre", "# Articulos"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaContenido.getTableHeader().setReorderingAllowed(false);
+        contenedorTabla.setViewportView(tablaContenido);
+        if (tablaContenido.getColumnModel().getColumnCount() > 0) {
+            tablaContenido.getColumnModel().getColumn(0).setMinWidth(60);
+            tablaContenido.getColumnModel().getColumn(0).setPreferredWidth(60);
+            tablaContenido.getColumnModel().getColumn(0).setMaxWidth(60);
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblNombre)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(contenedorTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(tituloVentana)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblId)
+                                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombre)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblNombre)
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(211, 211, 211)
                         .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(14, 14, 14))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
-                .addComponent(tituloVentana)
-                .addGap(45, 45, 45))
+                        .addGap(18, 18, 18)
+                        .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(17, 17, 17)
                 .addComponent(tituloVentana)
-                .addGap(18, 18, 18)
-                .addComponent(lblNombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(contenedorTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 10, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblId)
+                    .addComponent(lblNombre))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -118,7 +178,61 @@ public class RegistroDepartamento extends javax.swing.JInternalFrame {
     // Limpia todos los campos del formulario dejandolos en su estado inicial.
     private void limpiarFormulario() {
         this.nombre.setText("");
+        this.id.setText(
+            String.valueOf(controlador.getContadorDepartamentos() + 1)
+        );
     }
+    
+    /**
+     * Carga y muestra todos los registros.
+    */
+    private void cargarDepartamentosEnTabla() {
+        try {
+            mostrarRegistrosEnTabla();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                "Error al listar registros: " + e.getMessage(),
+                "Error de Listado",
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    /**
+     * Muestra el listado de departamentos de forma tabular.
+     * Si no hay registros, muestra un mensaje de “No hay registros”.
+     *
+    */
+    private void mostrarRegistrosEnTabla() {
+        // Referencia: https://stackoverflow.com/questions/2732865/how-to-update-jtable
+        DefaultTableModel modelo = (DefaultTableModel) tablaContenido.getModel();
+        modelo.setRowCount(0); // Limpiar tabla
+              
+        boolean hayRegistros = false;
+        
+        // Obtener departamentos actuales
+        Departamento[] departamentos = controlador.obtenerDepartamentosActuales();
+        
+        // Recorrer iterador mientras hayan registros
+        // Referencia de metodos: https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html
+        // Recorrer array de departamentos
+        for (Departamento departamento : departamentos) {
+            hayRegistros = true;
+
+            // Llenar filas
+            Object[] fila = new Object[] {
+                departamento.getId(),
+                departamento.getNombre(),
+                departamento.getContadorArticulos()
+            };
+            modelo.addRow(fila);
+        }
+        // Desplegar fila en caso de no tener registros
+        if (!hayRegistros) {
+            modelo.addRow(new Object[] { "", "No hay departamentos registrados", "" });
+        }
+    }
+    
+    
     
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         int opcion = JOptionPane.showOptionDialog(
@@ -155,7 +269,7 @@ public class RegistroDepartamento extends javax.swing.JInternalFrame {
             String nombre = this.nombre.getText().trim();
             controlador.agregarDepartamento(nombre);
             limpiarFormulario();
-
+            cargarDepartamentosEnTabla();
         } catch (IllegalArgumentException e) {
             // Error de validación - mensaje específico
             JOptionPane.showMessageDialog(this, 
@@ -175,12 +289,20 @@ public class RegistroDepartamento extends javax.swing.JInternalFrame {
         capturarDatosFormulario();
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
+    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonRegistrar;
+    private javax.swing.JScrollPane contenedorTabla;
+    private javax.swing.JTextField id;
+    private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JTextField nombre;
+    private javax.swing.JTable tablaContenido;
     private javax.swing.JLabel tituloVentana;
     // End of variables declaration//GEN-END:variables
 }

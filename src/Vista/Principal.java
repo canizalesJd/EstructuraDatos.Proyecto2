@@ -35,7 +35,6 @@ public class Principal extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         menu = new javax.swing.JMenu();
         registrarDepartamentosMenuItem = new javax.swing.JMenuItem();
-        listarDepartamentosMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,7 +46,7 @@ public class Principal extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+            .addGap(0, 549, Short.MAX_VALUE)
         );
 
         menu.setText("Menu");
@@ -59,14 +58,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         menu.add(registrarDepartamentosMenuItem);
-
-        listarDepartamentosMenuItem.setText("Listar Departamentos");
-        listarDepartamentosMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listarDepartamentosMenuItemActionPerformed(evt);
-            }
-        });
-        menu.add(listarDepartamentosMenuItem);
 
         menuBar.add(menu);
 
@@ -80,7 +71,9 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -91,12 +84,6 @@ public class Principal extends javax.swing.JFrame {
         escritorio.add(registroDepartamento);
         registroDepartamento.show();  
     }//GEN-LAST:event_registrarDepartamentosMenuItemActionPerformed
-
-    private void listarDepartamentosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarDepartamentosMenuItemActionPerformed
-        ListarDepartamentos listarDepartamentos = new ListarDepartamentos(controlador);
-        escritorio.add(listarDepartamentos);
-        listarDepartamentos.show();  
-    }//GEN-LAST:event_listarDepartamentosMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,7 +112,6 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
-    private javax.swing.JMenuItem listarDepartamentosMenuItem;
     private javax.swing.JMenu menu;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem registrarDepartamentosMenuItem;
