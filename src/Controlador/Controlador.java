@@ -253,7 +253,7 @@ public class Controlador {
             );
         }
     }
-    
+      
     // Getters y Setters
     public int getContadorDepartamentos() {
         return contadorDepartamentos;
@@ -262,4 +262,12 @@ public class Controlador {
     public void setContadorDepartamentos(int contadorDepartamentos) {
         this.contadorDepartamentos = contadorDepartamentos;
     }
+
+    public int getContadorArticulosGlobal() {
+        return contadorArticulosGlobal;
+    }
+
+    public void setContadorArticulosGlobal(int contadorArticulosGlobal) {
+        this.contadorArticulosGlobal = contadorArticulosGlobal;
+    }    
 }

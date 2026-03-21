@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package Vista;
 
 import javax.swing.JOptionPane;
@@ -126,9 +122,6 @@ public class RegistroDepartamento extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(contenedorTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tituloVentana)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblId)
@@ -138,7 +131,11 @@ public class RegistroDepartamento extends javax.swing.JInternalFrame {
                                     .addComponent(nombre)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(lblNombre)
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(151, 151, 151)
+                                .addComponent(tituloVentana)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(211, 211, 211)
                         .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,8 +209,6 @@ public class RegistroDepartamento extends javax.swing.JInternalFrame {
         // Obtener departamentos actuales
         Departamento[] departamentos = controlador.obtenerDepartamentosActuales();
         
-        // Recorrer iterador mientras hayan registros
-        // Referencia de metodos: https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html
         // Recorrer array de departamentos
         for (Departamento departamento : departamentos) {
             hayRegistros = true;
@@ -228,11 +223,9 @@ public class RegistroDepartamento extends javax.swing.JInternalFrame {
         }
         // Desplegar fila en caso de no tener registros
         if (!hayRegistros) {
-            modelo.addRow(new Object[] { "", "No hay departamentos registrados", "" });
+            modelo.addRow(new Object[] { 0, "No hay departamentos registrados", "" });
         }
     }
-    
-    
     
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         int opcion = JOptionPane.showOptionDialog(

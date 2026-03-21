@@ -34,7 +34,8 @@ public class Principal extends javax.swing.JFrame {
         escritorio = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         menu = new javax.swing.JMenu();
-        registrarDepartamentosMenuItem = new javax.swing.JMenuItem();
+        registrarDepartamentoMenuItem = new javax.swing.JMenuItem();
+        registrarArticuloMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,22 +43,30 @@ public class Principal extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 876, Short.MAX_VALUE)
+            .addGap(0, 952, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 549, Short.MAX_VALUE)
+            .addGap(0, 678, Short.MAX_VALUE)
         );
 
         menu.setText("Menu");
 
-        registrarDepartamentosMenuItem.setText("Registrar Departamentos");
-        registrarDepartamentosMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        registrarDepartamentoMenuItem.setText("Registrar Departamentos");
+        registrarDepartamentoMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarDepartamentosMenuItemActionPerformed(evt);
+                registrarDepartamentoMenuItemActionPerformed(evt);
             }
         });
-        menu.add(registrarDepartamentosMenuItem);
+        menu.add(registrarDepartamentoMenuItem);
+
+        registrarArticuloMenuItem.setText("Registrar Articulos");
+        registrarArticuloMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarArticuloMenuItemActionPerformed(evt);
+            }
+        });
+        menu.add(registrarArticuloMenuItem);
 
         menuBar.add(menu);
 
@@ -71,19 +80,23 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(escritorio)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void registrarDepartamentosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarDepartamentosMenuItemActionPerformed
+    private void registrarDepartamentoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarDepartamentoMenuItemActionPerformed
         RegistroDepartamento registroDepartamento = new RegistroDepartamento(controlador);
         escritorio.add(registroDepartamento);
         registroDepartamento.show();  
-    }//GEN-LAST:event_registrarDepartamentosMenuItemActionPerformed
+    }//GEN-LAST:event_registrarDepartamentoMenuItemActionPerformed
+
+    private void registrarArticuloMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarArticuloMenuItemActionPerformed
+        RegistroArticulo registroArticulo = new RegistroArticulo(controlador);
+        escritorio.add(registroArticulo);
+        registroArticulo.show();  
+    }//GEN-LAST:event_registrarArticuloMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,6 +127,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu menu;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem registrarDepartamentosMenuItem;
+    private javax.swing.JMenuItem registrarArticuloMenuItem;
+    private javax.swing.JMenuItem registrarDepartamentoMenuItem;
     // End of variables declaration//GEN-END:variables
 }
