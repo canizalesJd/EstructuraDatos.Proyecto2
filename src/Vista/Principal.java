@@ -87,7 +87,7 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registrarDepartamentoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarDepartamentoMenuItemActionPerformed
-        RegistroDepartamento registroDepartamento = new RegistroDepartamento(controlador);
+        GestionDepartamento registroDepartamento = new GestionDepartamento(controlador);
         escritorio.add(registroDepartamento);
         registroDepartamento.show();  
     }//GEN-LAST:event_registrarDepartamentoMenuItemActionPerformed

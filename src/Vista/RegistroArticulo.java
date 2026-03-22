@@ -404,20 +404,8 @@ public class RegistroArticulo extends javax.swing.JInternalFrame {
     
     // Cancelar el registro
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        int opcion = JOptionPane.showOptionDialog(
-            this,
-            "Desea abortar el registro?",
-            "Confirmar",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE,
-            null,
-            new Object[]{"Si", "No"},
-            "No"
-        );
-        if (opcion == JOptionPane.YES_OPTION) {
-            limpiarFormulario();
-            this.dispose();
-        }
+        limpiarFormulario();
+        this.dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     // Valida que los campos del formulario no esten vacios antes de registrar.

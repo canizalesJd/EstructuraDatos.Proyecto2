@@ -13,7 +13,7 @@ import Modelo.Departamento;
  */
 import Controlador.Controlador;
 import javax.swing.table.DefaultTableModel;
-public class RegistroDepartamento extends javax.swing.JInternalFrame {
+public class GestionDepartamento extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form RegistroDepartamento
@@ -21,7 +21,7 @@ public class RegistroDepartamento extends javax.swing.JInternalFrame {
     
     private final Controlador controlador;
     
-    public RegistroDepartamento(Controlador controlador) {
+    public GestionDepartamento(Controlador controlador) {
         initComponents();
         this.controlador = controlador;
         cargarDepartamentosEnTabla();
@@ -40,6 +40,7 @@ public class RegistroDepartamento extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         tituloVentana = new javax.swing.JLabel();
+        botonEliminar = new javax.swing.JButton();
         nombre = new javax.swing.JTextField();
         lblId = new javax.swing.JLabel();
         id = new javax.swing.JTextField();
@@ -50,11 +51,18 @@ public class RegistroDepartamento extends javax.swing.JInternalFrame {
         tablaContenido = new javax.swing.JTable();
 
         setClosable(true);
-        setTitle("Registro de Departamento");
+        setTitle("Gestión de Departamentos");
 
         tituloVentana.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        tituloVentana.setText("Registro de Departamento");
+        tituloVentana.setText("Gestión de Departamentos");
         tituloVentana.setToolTipText("");
+
+        botonEliminar.setText("Eliminar Departamento");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
 
         nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,40 +125,42 @@ public class RegistroDepartamento extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                    .addComponent(contenedorTabla)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(contenedorTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblId)
-                                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nombre)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblNombre)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(lblId)
+                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombre)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(151, 151, 151)
-                                .addComponent(tituloVentana)
+                                .addComponent(lblNombre)
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(211, 211, 211)
-                        .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(tituloVentana)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonEliminar))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(211, 211, 211)
+                            .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(tituloVentana)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tituloVentana)
+                    .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(contenedorTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblId)
                     .addComponent(lblNombre))
@@ -160,8 +170,8 @@ public class RegistroDepartamento extends javax.swing.JInternalFrame {
                     .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -228,20 +238,8 @@ public class RegistroDepartamento extends javax.swing.JInternalFrame {
     }
     
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        int opcion = JOptionPane.showOptionDialog(
-            this,
-            "Desea abortar el registro?",
-            "Confirmar",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE,
-            null,
-            new Object[]{"Si", "No"},
-            "No"
-        );
-        if (opcion == JOptionPane.YES_OPTION) {
-            limpiarFormulario();
-            this.dispose();
-        }
+        limpiarFormulario();
+        this.dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     // Valida que los campos del formulario no esten vacios antes de registrar.
@@ -263,11 +261,17 @@ public class RegistroDepartamento extends javax.swing.JInternalFrame {
             controlador.agregarDepartamento(nombre);
             limpiarFormulario();
             cargarDepartamentosEnTabla();
+        } catch (IllegalStateException e) {
+            // Error de Operacion - mensaje específico
+            JOptionPane.showMessageDialog(this, 
+                e.getMessage(), 
+                "Error de Operación", 
+                JOptionPane.ERROR_MESSAGE);
         } catch (IllegalArgumentException e) {
             // Error de validación - mensaje específico
             JOptionPane.showMessageDialog(this, 
                 e.getMessage(), 
-                "Error de Validacion", 
+                "Error de Validación", 
                 JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
              // Error inesperado
@@ -276,6 +280,27 @@ public class RegistroDepartamento extends javax.swing.JInternalFrame {
                  "Error", 
                  JOptionPane.ERROR_MESSAGE);
          }
+    }
+    
+    // Metodo encargado de la eliminacion del departamento
+    // Elimina el ultimo departamento registrado en la pila (LIFO)
+    public void eliminarDepartamento() {
+        try {
+            controlador.eliminarDepartamento();
+            cargarDepartamentosEnTabla();
+        } catch (IllegalStateException e) {
+            // Error de operacion - mensaje específico
+            JOptionPane.showMessageDialog(this, 
+                e.getMessage(), 
+                "Error en la Operacion", 
+                JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+             // Error inesperado
+             JOptionPane.showMessageDialog(this, 
+                 "Error inesperado: " + e.getMessage(), 
+                 "Error", 
+                 JOptionPane.ERROR_MESSAGE);
+        }
     }
        
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
@@ -286,9 +311,15 @@ public class RegistroDepartamento extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_idActionPerformed
 
+    // Metodo encargado de la eliminacion del departamento
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        eliminarDepartamento();
+    }//GEN-LAST:event_botonEliminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCancelar;
+    private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonRegistrar;
     private javax.swing.JScrollPane contenedorTabla;
     private javax.swing.JTextField id;
