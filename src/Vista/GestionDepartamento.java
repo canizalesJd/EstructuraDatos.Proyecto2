@@ -26,7 +26,7 @@ public class GestionDepartamento extends javax.swing.JInternalFrame {
         this.controlador = controlador;
         cargarDepartamentosEnTabla();
         this.id.setText(
-            String.valueOf(controlador.getContadorDepartamentos() + 1)
+            String.valueOf(controlador.getContadorDepartamentosId() + 1)
         );
     }
 
@@ -74,11 +74,6 @@ public class GestionDepartamento extends javax.swing.JInternalFrame {
 
         id.setEditable(false);
         id.setFocusable(false);
-        id.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idActionPerformed(evt);
-            }
-        });
 
         lblNombre.setText("Nombre");
 
@@ -186,7 +181,7 @@ public class GestionDepartamento extends javax.swing.JInternalFrame {
     private void limpiarFormulario() {
         this.nombre.setText("");
         this.id.setText(
-            String.valueOf(controlador.getContadorDepartamentos() + 1)
+            String.valueOf(controlador.getContadorDepartamentosId() + 1)
         );
     }
     
@@ -306,10 +301,6 @@ public class GestionDepartamento extends javax.swing.JInternalFrame {
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
         capturarDatosFormulario();
     }//GEN-LAST:event_botonRegistrarActionPerformed
-
-    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idActionPerformed
 
     // Metodo encargado de la eliminacion del departamento
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed

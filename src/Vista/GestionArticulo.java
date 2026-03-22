@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import Modelo.Departamento;
 import Modelo.Articulo;
-public class RegistroArticulo extends javax.swing.JInternalFrame {
+public class GestionArticulo extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form RegistroArticulos
@@ -22,7 +22,7 @@ public class RegistroArticulo extends javax.swing.JInternalFrame {
     
     private final Controlador controlador;
     
-    public RegistroArticulo(Controlador controlador) {
+    public GestionArticulo(Controlador controlador) {
         initComponents();
         this.controlador = controlador;
         cargarDepartamentosEnTabla();
@@ -60,12 +60,14 @@ public class RegistroArticulo extends javax.swing.JInternalFrame {
         contenedorTablaArticulo = new javax.swing.JScrollPane();
         tablaArticulo = new javax.swing.JTable();
         botonRefrescarDepartamentos = new javax.swing.JButton();
+        botonEliminarArticulo = new javax.swing.JButton();
+        textoAyudaFormulario = new javax.swing.JLabel();
 
         setClosable(true);
-        setTitle("Registro de Articulos");
+        setTitle("Gestión de Articulos");
 
         tituloVentana.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        tituloVentana.setText("Registro de Articulos");
+        tituloVentana.setText("Gestión de Articulos");
         tituloVentana.setToolTipText("");
 
         tituloTablaDepartamento.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
@@ -190,6 +192,18 @@ public class RegistroArticulo extends javax.swing.JInternalFrame {
             }
         });
 
+        botonEliminarArticulo.setText("Eliminar Articulo");
+        botonEliminarArticulo.setEnabled(false);
+        botonEliminarArticulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarArticuloActionPerformed(evt);
+            }
+        });
+
+        textoAyudaFormulario.setFont(new java.awt.Font("SansSerif", 2, 10)); // NOI18N
+        textoAyudaFormulario.setText("Seleccione un departamento de la tabla para realizar el registro");
+        textoAyudaFormulario.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -197,7 +211,7 @@ public class RegistroArticulo extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(contenedorTablaDepartamento, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
+                    .addComponent(contenedorTablaDepartamento, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblIdDepartamento)
@@ -216,40 +230,47 @@ public class RegistroArticulo extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCategoria)
                             .addComponent(categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(contenedorTablaArticulo, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(tituloTablaArticulo)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(tituloTablaDepartamento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonRefrescarDepartamentos))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonEliminarArticulo, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(contenedorTablaArticulo, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tituloTablaDepartamento)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(197, 197, 197)
-                                .addComponent(tituloVentana)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonRefrescarDepartamentos)))
+                                .addComponent(tituloVentana))
+                            .addComponent(textoAyudaFormulario)
+                            .addComponent(tituloTablaArticulo))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(tituloVentana)
-                        .addGap(40, 40, 40))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botonRefrescarDepartamentos)
-                            .addComponent(tituloTablaDepartamento))
-                        .addGap(10, 10, 10)))
+                            .addComponent(tituloTablaDepartamento)
+                            .addComponent(botonRefrescarDepartamentos))
+                        .addGap(4, 4, 4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(tituloVentana)
+                        .addGap(40, 40, 40)))
                 .addComponent(contenedorTablaDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(3, 3, 3)
+                .addComponent(textoAyudaFormulario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -265,15 +286,17 @@ public class RegistroArticulo extends javax.swing.JInternalFrame {
                         .addComponent(lblIdArticulo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(idArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(3, 3, 3)
                 .addComponent(tituloTablaArticulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contenedorTablaArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonEliminarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
         );
 
         pack();
@@ -312,9 +335,14 @@ public class RegistroArticulo extends javax.swing.JInternalFrame {
         int contador = departamento.getContadorArticulos();
         // Si no hay articulos, mostrar el mensaje en la tabla
         if (contador == 0) {
-            modelo.addRow(new Object[] { "", "No hay articulos registrados", "" });
+            modelo.addRow(new Object[] { 0, "No hay articulos registrados", "" });
+            // Desabilitar boton de eliminar articulo
+            this.botonEliminarArticulo.setEnabled(false);
             return;
         }
+        
+        // Habilitar boton de eliminar articulo
+        this.botonEliminarArticulo.setEnabled(true);
         
         // Recorrer array de articulos
         for (int i = 0; i < contador; i++) {
@@ -390,7 +418,7 @@ public class RegistroArticulo extends javax.swing.JInternalFrame {
         }
         // Desplegar fila en caso de no tener registros
         if (!hayRegistros) {
-            modelo.addRow(new Object[] { "", "No hay departamentos registrados", "" });
+            modelo.addRow(new Object[] { 0, "No hay departamentos registrados", "" });
         }
     }
     
@@ -449,6 +477,7 @@ public class RegistroArticulo extends javax.swing.JInternalFrame {
                 categoria
             );
             limpiarFormulario();
+            cargarDepartamentosEnTabla();
             cargarArticulosEnTabla();
         } catch (IllegalArgumentException e) {
             // Error de validación - mensaje específico
@@ -465,8 +494,28 @@ public class RegistroArticulo extends javax.swing.JInternalFrame {
          }
     }
     
+    // Metodo encargado de la eliminacion de un articulo
+    // Elimina el primer articulo registrado en la cola (FIFO)
+    public void eliminarDepartamento(int idDepartamento) {
+        try {
+            controlador.eliminarArticulo(idDepartamento);
+            cargarArticulosEnTabla();
+            cargarDepartamentosEnTabla();
+        } catch (IllegalStateException e) {
+            // Error de operacion - mensaje específico
+            JOptionPane.showMessageDialog(this, 
+                e.getMessage(), 
+                "Error en la Operacion", 
+                JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+             // Error inesperado
+             JOptionPane.showMessageDialog(this, 
+                 "Error inesperado: " + e.getMessage(), 
+                 "Error", 
+                 JOptionPane.ERROR_MESSAGE);
+        }
+    }
     
-       
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
         capturarDatosFormulario();
     }//GEN-LAST:event_botonRegistrarActionPerformed
@@ -499,6 +548,15 @@ public class RegistroArticulo extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tablaDepartamentoMouseClicked
 
+    // Eliminar articulo
+    private void botonEliminarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarArticuloActionPerformed
+        eliminarDepartamento(
+            Integer.parseInt(
+                this.idDepartamento.getText().trim()
+            )
+        );
+    }//GEN-LAST:event_botonEliminarArticuloActionPerformed
+
     private void botonRefrescarDepartamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRefrescarDepartamentosActionPerformed
         cargarDepartamentosEnTabla();
     }//GEN-LAST:event_botonRefrescarDepartamentosActionPerformed
@@ -506,6 +564,7 @@ public class RegistroArticulo extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCancelar;
+    private javax.swing.JButton botonEliminarArticulo;
     private javax.swing.JButton botonRefrescarDepartamentos;
     private javax.swing.JButton botonRegistrar;
     private javax.swing.JComboBox<String> categoria;
@@ -520,6 +579,7 @@ public class RegistroArticulo extends javax.swing.JInternalFrame {
     private javax.swing.JTextField nombre;
     private javax.swing.JTable tablaArticulo;
     private javax.swing.JTable tablaDepartamento;
+    private javax.swing.JLabel textoAyudaFormulario;
     private javax.swing.JLabel tituloTablaArticulo;
     private javax.swing.JLabel tituloTablaDepartamento;
     private javax.swing.JLabel tituloVentana;

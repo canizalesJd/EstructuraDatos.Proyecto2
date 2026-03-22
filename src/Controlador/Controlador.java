@@ -269,5 +269,21 @@ public class Controlador {
 
     public void setContadorArticulosGlobal(int contadorArticulosGlobal) {
         this.contadorArticulosGlobal = contadorArticulosGlobal;
-    }    
+    }
+
+    public Departamento[] getDepartamentos() {
+        return departamentos;
+    }
+
+    public void setDepartamentos(Departamento[] departamentos) {
+        this.departamentos = departamentos;
+    }
+
+    public int getContadorDepartamentosId() {
+        return contadorDepartamentosId;
+    }
+
+    public void setContadorDepartamentosId(int contadorDepartamentosId) {
+        this.contadorDepartamentosId = contadorDepartamentosId;
+    }
 }
