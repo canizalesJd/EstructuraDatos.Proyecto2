@@ -246,11 +246,9 @@ public class Controlador {
             eliminarArticulo(origen.getId());
             
             // Agregar en la cola de destino
-            agregarArticulo(
-                destino.getId(), 
-                articulo.getNombre(),
-                articulo.getCategoria()
-            );
+            int contador = destino.getContadorArticulos();
+            destino.getArticulos()[contador] = articulo;
+            destino.setContadorArticulos(contador + 1);
         }
     }
       

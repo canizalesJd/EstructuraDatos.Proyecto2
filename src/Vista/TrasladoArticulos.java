@@ -49,7 +49,6 @@ public class TrasladoArticulos extends javax.swing.JInternalFrame {
         botonTrasladar = new javax.swing.JButton();
         tituloTablaDepartamento = new javax.swing.JLabel();
         botonRefrescarDepartamentos = new javax.swing.JButton();
-        botonRefrescarDepartamentos1 = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Trasladar Articulos");
@@ -117,13 +116,6 @@ public class TrasladoArticulos extends javax.swing.JInternalFrame {
             }
         });
 
-        botonRefrescarDepartamentos1.setText("Refrescar Tabla");
-        botonRefrescarDepartamentos1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonRefrescarDepartamentos1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,7 +137,7 @@ public class TrasladoArticulos extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(tituloTablaDepartamento)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonRefrescarDepartamentos1))
+                                .addComponent(botonRefrescarDepartamentos))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbOrigen)
@@ -158,11 +150,6 @@ public class TrasladoArticulos extends javax.swing.JInternalFrame {
                                     .addComponent(departamentoDestino, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(contenedorTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE))))
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(207, 207, 207)
-                    .addComponent(botonRefrescarDepartamentos)
-                    .addContainerGap(208, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,7 +158,7 @@ public class TrasladoArticulos extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tituloTablaDepartamento, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botonRefrescarDepartamentos1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(botonRefrescarDepartamentos, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contenedorTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -187,11 +174,6 @@ public class TrasladoArticulos extends javax.swing.JInternalFrame {
                     .addComponent(botonTrasladar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(211, 211, 211)
-                    .addComponent(botonRefrescarDepartamentos)
-                    .addContainerGap(225, Short.MAX_VALUE)))
         );
 
         pack();
@@ -305,18 +287,13 @@ public class TrasladoArticulos extends javax.swing.JInternalFrame {
 
     private void botonRefrescarDepartamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRefrescarDepartamentosActionPerformed
         cargarDepartamentosEnTabla();
-    }//GEN-LAST:event_botonRefrescarDepartamentosActionPerformed
-
-    private void botonRefrescarDepartamentos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRefrescarDepartamentos1ActionPerformed
-        cargarDepartamentosEnTabla();
         cargarComboboxes();
-    }//GEN-LAST:event_botonRefrescarDepartamentos1ActionPerformed
+    }//GEN-LAST:event_botonRefrescarDepartamentosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonRefrescarDepartamentos;
-    private javax.swing.JButton botonRefrescarDepartamentos1;
     private javax.swing.JButton botonTrasladar;
     private javax.swing.JScrollPane contenedorTabla;
     private javax.swing.JComboBox<String> departamentoDestino;
