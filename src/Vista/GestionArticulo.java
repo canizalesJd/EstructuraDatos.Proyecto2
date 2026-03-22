@@ -4,7 +4,7 @@ package Vista;
  * Universidad Estatal a Distancia (UNED)
  * Cuatrimestre: I Cuatrimestre 2026
  * Proyecto: Proyecto 2 - Estructura de Datos
- * Descripción: Pantalla para registrar nuevos articulos en el sistema
+ * Descripción: Pantalla para gestionar los articulos en el sistema
  * Estudiante: Jose David Canizales Azocar
  * Fecha: Marzo 2026
  */
@@ -234,14 +234,11 @@ public class GestionArticulo extends javax.swing.JInternalFrame {
                         .addComponent(tituloTablaDepartamento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonRefrescarDepartamentos))
+                    .addComponent(botonEliminarArticulo, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonEliminarArticulo, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(contenedorTablaArticulo, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,10 +270,11 @@ public class GestionArticulo extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblIdDepartamento)
-                            .addComponent(lblNombre)
-                            .addComponent(lblCategoria))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblIdDepartamento)
+                                .addComponent(lblCategoria)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(idDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -463,7 +461,7 @@ public class GestionArticulo extends javax.swing.JInternalFrame {
      * Captura los datos del formulario, valida su formato e intenta
      * registrar el articulo.
     */
-    public void capturarDatosFormulario() {
+    private void capturarDatosFormulario() {
         try {
             validarCampos();
             String nombre = this.nombre.getText().trim();
@@ -496,7 +494,7 @@ public class GestionArticulo extends javax.swing.JInternalFrame {
     
     // Metodo encargado de la eliminacion de un articulo
     // Elimina el primer articulo registrado en la cola (FIFO)
-    public void eliminarDepartamento(int idDepartamento) {
+    private void eliminarDepartamento(int idDepartamento) {
         try {
             controlador.eliminarArticulo(idDepartamento);
             cargarArticulosEnTabla();

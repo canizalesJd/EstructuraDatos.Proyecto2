@@ -36,6 +36,7 @@ public class Principal extends javax.swing.JFrame {
         menu = new javax.swing.JMenu();
         departamentoMenuItem = new javax.swing.JMenuItem();
         articuloMenuItem = new javax.swing.JMenuItem();
+        trasladoMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,6 +69,14 @@ public class Principal extends javax.swing.JFrame {
         });
         menu.add(articuloMenuItem);
 
+        trasladoMenuItem.setText("Traslado de Articulos");
+        trasladoMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trasladoMenuItemActionPerformed(evt);
+            }
+        });
+        menu.add(trasladoMenuItem);
+
         menuBar.add(menu);
 
         setJMenuBar(menuBar);
@@ -97,6 +106,12 @@ public class Principal extends javax.swing.JFrame {
         escritorio.add(registroArticulo);
         registroArticulo.show();  
     }//GEN-LAST:event_articuloMenuItemActionPerformed
+
+    private void trasladoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trasladoMenuItemActionPerformed
+        TrasladoArticulos trasladoArticulos = new TrasladoArticulos(controlador);
+        escritorio.add(trasladoArticulos);
+        trasladoArticulos.show();  
+    }//GEN-LAST:event_trasladoMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,5 +144,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu menu;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem trasladoMenuItem;
     // End of variables declaration//GEN-END:variables
 }

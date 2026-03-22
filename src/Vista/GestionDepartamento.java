@@ -7,7 +7,7 @@ import Modelo.Departamento;
  * Universidad Estatal a Distancia (UNED)
  * Cuatrimestre: I Cuatrimestre 2026
  * Proyecto: Proyecto 2 - Estructura de Datos
- * Descripción: Pantalla para registrar nuevos departamentos en el sistema
+ * Descripción: Pantalla para gestionar los departamentos en el sistema
  * Estudiante: Jose David Canizales Azocar
  * Fecha: Marzo 2026
  */
@@ -249,7 +249,7 @@ public class GestionDepartamento extends javax.swing.JInternalFrame {
      * Captura los datos del formulario, valida su formato e intenta
      * registrar el departamento.
     */
-    public void capturarDatosFormulario() {
+    private void capturarDatosFormulario() {
         try {
             validarCampos();
             String nombre = this.nombre.getText().trim();
@@ -279,7 +279,7 @@ public class GestionDepartamento extends javax.swing.JInternalFrame {
     
     // Metodo encargado de la eliminacion del departamento
     // Elimina el ultimo departamento registrado en la pila (LIFO)
-    public void eliminarDepartamento() {
+    private void eliminarDepartamento() {
         try {
             controlador.eliminarDepartamento();
             cargarDepartamentosEnTabla();
